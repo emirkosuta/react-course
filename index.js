@@ -1,20 +1,7 @@
-class Human {
-  gender = 'male';
+import { newNumbers } from './spread.js';
+import { person } from './class.js';
 
-  printGender = () => {
-    console.log(this.gender);
-  };
-}
-
-class Person extends Human {
-  name = 'Emir';
-  gender = 'female';
-
-  printName = () => {
-    console.log(this.name);
-  };
-}
-
-const person = new Person();
 person.printName();
 person.printGender();
+
+console.log(newNumbers);
