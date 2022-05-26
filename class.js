@@ -15,4 +15,4 @@ class Person extends Human {
   };
 }
 
-export const person = new Person();
+export default new Person();
