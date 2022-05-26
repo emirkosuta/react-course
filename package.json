@@ -16,6 +16,8 @@
     "url": "https://github.com/emirkosuta/react-course/issues"
   },
   "homepage": "https://github.com/emirkosuta/react-course#readme",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }
-
