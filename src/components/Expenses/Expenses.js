@@ -18,7 +18,7 @@ export const Expenses = (props) => {
         onFilterYearChanged={filterYearChangedHandler}
       />
       {props.expenses.map((expense) => (
-        <ExpenseItem expense={expense} />
+        <ExpenseItem key={expense.id} expense={expense} />
       ))}
     </Card>
   );
