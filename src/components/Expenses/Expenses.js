@@ -16,17 +16,21 @@ export const Expenses = (props) => {
     return expense.date.getFullYear().toString() === year;
   });
 
+  let expensesContent = <p>No content found.</p>;
+
+  if (filteredExpenses.length > 0) {
+    expensesContent = filteredExpenses.map((expense) => (
+      <ExpenseItem key={expense.id} expense={expense} />
+    ));
+  }
+
   return (
     <Card className="expenses">
       <ExpensesFilter
         selected={year}
         onFilterYearChanged={filterYearChangedHandler}
       />
-      {filteredExpenses.length === 0 && <p>No content found.</p>}
-      {filteredExpenses.length > 0 &&
-        filteredExpenses.map((expense) => (
-          <ExpenseItem key={expense.id} expense={expense} />
-        ))}
+      {expensesContent}
     </Card>
   );
 };
