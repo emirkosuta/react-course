@@ -22,13 +22,11 @@ export const Expenses = (props) => {
         selected={year}
         onFilterYearChanged={filterYearChangedHandler}
       />
-      {filteredExpenses.length === 0 ? (
-        <p>No content found.</p>
-      ) : (
+      {filteredExpenses.length === 0 && <p>No content found.</p>}
+      {filteredExpenses.length > 0 &&
         filteredExpenses.map((expense) => (
           <ExpenseItem key={expense.id} expense={expense} />
-        ))
-      )}
+        ))}
     </Card>
   );
 };
