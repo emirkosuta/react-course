@@ -56,7 +56,7 @@ const AddUser = (props) => {
   };
 
   return (
-    <Wrapper>
+    <>
       {error && (
         <ErrorModal
           onCancel={cancelHandler}
@@ -83,7 +83,7 @@ const AddUser = (props) => {
           <Button type="submit">Add user</Button>
         </form>
       </Card>
-    </Wrapper>
+    </>
   );
 };
 
