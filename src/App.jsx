@@ -14,6 +14,7 @@ function App() {
   }, []);
 
   const loginHandler = (email, password) => {
+    console.log(email, password);
     // We should of course check email and password
     // But it's just a dummy/ demo anyways
     setIsLoggedIn(true);
@@ -26,13 +27,13 @@ function App() {
   };
 
   return (
-    <React.Fragment>
+    <>
       <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
       <main>
         {!isLoggedIn && <Login onLogin={loginHandler} />}
         {isLoggedIn && <Home onLogout={logoutHandler} />}
       </main>
-    </React.Fragment>
+    </>
   );
 }
 
