@@ -5,17 +5,16 @@ import Navigation from './Navigation';
 import classes from './MainHeader.module.css';
 
 function MainHeader(props) {
-  const { isAuthenticated, onLogout } = props;
+  const { onLogout } = props;
   return (
     <header className={classes['main-header']}>
       <h1>A Typical Page</h1>
-      <Navigation isLoggedIn={isAuthenticated} onLogout={onLogout} />
+      <Navigation onLogout={onLogout} />
     </header>
   );
 }
 
 MainHeader.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
   onLogout: PropTypes.func.isRequired,
 };
 
