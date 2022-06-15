@@ -5,6 +5,7 @@ import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
 import AuthContext from '../../store/auth-context';
+import Input from '../UI/Input/Input';
 
 const emailReducer = (state, action) => {
   if (action.type === 'USER_INPUT') {
@@ -78,38 +79,26 @@ function Login() {
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
-        <div
-          className={`${classes.control} ${
-            emailState.valid === false ? classes.invalid : ''
-          }`}
+        <Input
+          id="email"
+          type="email"
+          valid={emailState.isValid}
+          value={emailState.value}
+          onChange={emailChangeHandler}
+          onBlur={emailBlurHandler}
         >
-          <label htmlFor="email">
-            E-Mail
-            <input
-              type="email"
-              id="email"
-              value={emailState.value}
-              onChange={emailChangeHandler}
-              onBlur={emailBlurHandler}
-            />
-          </label>
-        </div>
-        <div
-          className={`${classes.control} ${
-            passwordState.isValid === false ? classes.invalid : ''
-          }`}
+          email
+        </Input>
+        <Input
+          id="password"
+          type="password"
+          valid={passwordState.isValid}
+          value={passwordState.value}
+          onChange={passwordChangeHandler}
+          onBlur={passwordBlurHandler}
         >
-          <label htmlFor="password">
-            Password
-            <input
-              type="password"
-              id="password"
-              value={passwordState.value}
-              onChange={passwordChangeHandler}
-              onBlur={passwordBlurHandler}
-            />
-          </label>
-        </div>
+          password
+        </Input>
         <div className={classes.actions}>
           <Button type="submit" className={classes.btn} disabled={!formIsValid}>
             Login
