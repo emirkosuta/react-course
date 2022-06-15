@@ -8,8 +8,6 @@ import AuthContext from './store/auth-context';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const memoLoggedIn = useMemo(() => ({ isLoggedIn }), [isLoggedIn]);
-
   useEffect(() => {
     if (localStorage.getItem('logged_in') === '1') {
       setIsLoggedIn(true);
@@ -29,9 +27,14 @@ function App() {
     localStorage.setItem('logged_in', '0');
   };
 
+  const memoLoggedIn = useMemo(
+    () => ({ isLoggedIn, onLogout: logoutHandler }),
+    [isLoggedIn],
+  );
+
   return (
     <AuthContext.Provider value={memoLoggedIn}>
-      <MainHeader onLogout={logoutHandler} />
+      <MainHeader />
       <main>
         {!isLoggedIn && <Login onLogin={loginHandler} />}
         {isLoggedIn && <Home onLogout={logoutHandler} />}
