@@ -1,9 +1,10 @@
-import React, { useState, useReducer, useEffect } from 'react';
+// eslint-disable-next-line object-curly-newline
+import React, { useState, useReducer, useEffect, useContext } from 'react';
 
-import PropTypes from 'prop-types';
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
+import AuthContext from '../../store/auth-context';
 
 const emailReducer = (state, action) => {
   if (action.type === 'USER_INPUT') {
@@ -25,8 +26,8 @@ const passwordReducer = (state, action) => {
   return { value: '', isValid: false };
 };
 
-function Login(props) {
-  const { onLogin } = props;
+function Login() {
+  const authCtx = useContext(AuthContext);
 
   const [formIsValid, setFormIsValid] = useState(false);
 
@@ -71,7 +72,7 @@ function Login(props) {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    onLogin(emailState.value, passwordState.value);
+    authCtx.onLogin(emailState.value, passwordState.value);
   };
 
   return (
@@ -118,9 +119,5 @@ function Login(props) {
     </Card>
   );
 }
-
-Login.propTypes = {
-  onLogin: PropTypes.func.isRequired,
-};
 
 export default Login;
