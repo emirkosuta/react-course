@@ -1,10 +1,20 @@
 import propTypes from 'prop-types';
-import React from 'react';
+import React, { useRef, useImperativeHandle } from 'react';
 import classes from './Input.module.css';
 
-function Input(props) {
+const Input = React.forwardRef((props, ref) => {
   // eslint-disable-next-line object-curly-newline
   const { value, type, valid, id, onChange, onBlur, children } = props;
+  const inputRef = useRef();
+
+  const focus = () => {
+    inputRef.current.focus();
+  };
+
+  useImperativeHandle(ref, () => ({
+    focus,
+  }));
+
   return (
     <div
       className={`${classes.control} ${valid === false ? classes.invalid : ''}`}
@@ -17,11 +27,12 @@ function Input(props) {
           value={value}
           onChange={onChange}
           onBlur={onBlur}
+          ref={inputRef}
         />
       </label>
     </div>
   );
-}
+});
 
 Input.propTypes = {
   value: propTypes.string.isRequired,

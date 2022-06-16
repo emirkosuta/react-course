@@ -1,5 +1,11 @@
 // eslint-disable-next-line object-curly-newline
-import React, { useState, useReducer, useEffect, useContext } from 'react';
+import React, {
+  useState,
+  useReducer,
+  useEffect,
+  useContext,
+  useRef,
+} from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
@@ -30,16 +36,19 @@ const passwordReducer = (state, action) => {
 function Login() {
   const authCtx = useContext(AuthContext);
 
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
   const [formIsValid, setFormIsValid] = useState(false);
 
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
     value: '',
-    isValid: true,
+    isValid: null,
   });
 
   const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
     value: '',
-    isValid: true,
+    isValid: null,
   });
 
   const { isValid: emailIsValid } = emailState;
@@ -73,13 +82,20 @@ function Login() {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    authCtx.onLogin(emailState.value, passwordState.value);
+    if (formIsValid) {
+      authCtx.onLogin(emailState.value, passwordState.value);
+    } else if (!emailIsValid) {
+      emailRef.current.focus();
+    } else {
+      passwordRef.current.focus();
+    }
   };
 
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
         <Input
+          ref={emailRef}
           id="email"
           type="email"
           valid={emailState.isValid}
@@ -90,6 +106,7 @@ function Login() {
           email
         </Input>
         <Input
+          ref={passwordRef}
           id="password"
           type="password"
           valid={passwordState.isValid}
@@ -100,7 +117,7 @@ function Login() {
           password
         </Input>
         <div className={classes.actions}>
-          <Button type="submit" className={classes.btn} disabled={!formIsValid}>
+          <Button type="submit" className={classes.btn}>
             Login
           </Button>
         </div>
