@@ -1,10 +1,12 @@
 import React from 'react';
+import PropType from 'prop-types';
 import CartIcon from '../Cart/CartIcon';
 import classes from './HeaderCardButton.module.css';
 
-function HeaderCardButton() {
+function HeaderCardButton(props) {
+  const { onClick } = props;
   return (
-    <button type="button" className={classes.button}>
+    <button onClick={onClick} type="button" className={classes.button}>
       <span className={classes.icon}>
         <CartIcon />
       </span>
@@ -13,5 +15,9 @@ function HeaderCardButton() {
     </button>
   );
 }
+
+HeaderCardButton.propTypes = {
+  onClick: PropType.func.isRequired,
+};
 
 export default HeaderCardButton;

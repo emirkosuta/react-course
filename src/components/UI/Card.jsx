@@ -8,8 +8,12 @@ function Card(props) {
 }
 
 Card.propTypes = {
-  children: PropType.element.isRequired,
+  children: PropType.node.isRequired,
   className: PropType.string,
+};
+
+Card.defaultProps = {
+  className: '',
 };
 
 export default Card;

@@ -25,7 +25,7 @@ MealItem.propTypes = {
   id: PropType.string.isRequired,
   name: PropType.string.isRequired,
   description: PropType.string.isRequired,
-  price: PropType.string.isRequired,
+  price: PropType.number.isRequired,
 };
 
 export default MealItem;
