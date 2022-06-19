@@ -1,12 +1,13 @@
-import React from 'react';
-import DUMMY_MEALS from './dummy-meals';
+import React, { useContext } from 'react';
 import classes from './AvailableMeals.module.css';
 import MealItem from './MealItem/MealItem';
 import Card from '../UI/Card';
+import CartContext from '../../store/cart-context';
 
 function AvailableMeals() {
+  const cartContext = useContext(CartContext);
   // eslint-disable-next-line object-curly-newline
-  const meals = DUMMY_MEALS.map(({ id, name, description, price }) => (
+  const meals = cartContext.items.map(({ id, name, description, price }) => (
     <MealItem
       key={id}
       id={id}

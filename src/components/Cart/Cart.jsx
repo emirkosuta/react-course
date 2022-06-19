@@ -1,15 +1,17 @@
 /* eslint-disable object-curly-newline */
-import React from 'react';
+import React, { useContext } from 'react';
 import PropType from 'prop-types';
 import Modal from '../UI/Modal';
 import classes from './Cart.module.css';
+import CartContext from '../../store/cart-context';
 
 function Cart(props) {
   const { onHideModal } = props;
+  const cartContext = useContext(CartContext);
 
   const cartItems = (
     <ul>
-      {[{ id: '1', name: 'Paella', amount: 2, price: 10.9 }].map((cart) => (
+      {cartContext.items.map((cart) => (
         <li key={cart.id}>{cart.name}</li>
       ))}
     </ul>
