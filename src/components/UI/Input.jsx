@@ -3,18 +3,18 @@ import React from 'react';
 import PropType from 'prop-types';
 import classes from './Input.module.css';
 
-function Input(props) {
+const Input = React.forwardRef((props, ref) => {
   const { input, label } = props;
 
   return (
     <div className={classes.input}>
       <label htmlFor={input.id}>
         <span>{label}</span>
-        <input {...input} />
+        <input {...input} ref={ref} />
       </label>
     </div>
   );
-}
+});
 
 Input.propTypes = {
   label: PropType.string.isRequired,

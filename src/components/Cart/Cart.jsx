@@ -27,7 +27,7 @@ function Cart(props) {
       {cartItems}
       <div className={classes.total}>
         <span>Total Amount</span>
-        <span>35.62</span>
+        <span>{cartContext.totalAmount.toFixed(2)}</span>
       </div>
     </Modal>
   );

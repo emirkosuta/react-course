@@ -2,7 +2,7 @@ import React from 'react';
 import PropType from 'prop-types';
 import classes from './Header.module.css';
 import headerImage from '../../assets/header.jpg';
-import HeaderCardButton from './HeaderCardButton';
+import HeaderCardButton from './HeaderCartButton';
 
 function Header(props) {
   const { onShowCart } = props;
