@@ -55,11 +55,13 @@ function Login() {
   const { isValid: passwordIsValid } = passwordState;
 
   useEffect(() => {
+    console.log('USE EFFECT');
     const timeoutIdentifier = setTimeout(() => {
       setFormIsValid(emailIsValid && passwordIsValid);
     }, 500);
 
     return () => {
+      console.log('CLEANUP');
       clearInterval(timeoutIdentifier);
     };
   }, [emailIsValid, passwordIsValid]);
